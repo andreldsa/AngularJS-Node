@@ -1,0 +1,6 @@
+'use strict';
+
+angular.module('finalnodeApp')
+  .controller('ClientCtrl', function ($scope) {
+    $scope.message = 'Hello';
+  });

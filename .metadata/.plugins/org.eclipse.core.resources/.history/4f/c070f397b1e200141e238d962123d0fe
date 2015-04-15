@@ -1,0 +1,10 @@
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="client in clients">
+        <strong>{{client.name}}</strong><br>
+        <span class="text-muted">{{client.info}}</span>
+        <span class="text-muted">{{client.email}}</span>
+        <a ng-click="delete(client)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+    </li>
+  </ul>
+</div>

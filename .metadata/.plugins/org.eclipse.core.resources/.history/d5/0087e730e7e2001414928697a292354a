@@ -1,0 +1,30 @@
+'use strict';
+
+angular.module('finalnodeApp')
+  .controller('ClientCtrl', function ($scope, $http, $location, Auth) {
+    $scope.clients = [];
+    alert(Auth.getCurrentUser())
+    $http.get('/api/clients').success(function(clients) {
+      $scope.clients = clients;
+    });
+
+    $scope.add = function() {
+      if($scope.newClient === '') {
+        return;
+      }
+      $http.post('/api/clients', $scope.newClient);
+      $location.path('/client')
+    };
+
+    $scope.delete = function(client) {
+      $http.delete('/api/clients/' + client._id);
+      $scope.clients.pop(client)
+    };
+    
+    $scope.show = function(client) {
+        $http.get('/api/clients/' + client._id).success(function(client) {
+            $scope.client = client;
+            $location.path('/client/'+client._id)
+        });
+      };
+  });

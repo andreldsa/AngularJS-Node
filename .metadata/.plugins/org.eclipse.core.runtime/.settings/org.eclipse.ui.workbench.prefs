@@ -1,0 +1,38 @@
+//org.eclipse.ui.commands/state/com.aptana.editor.common.commands.toggleOutline/org.eclipse.ui.commands.toggleState=false
+//org.eclipse.ui.commands/state/com.aptana.explorer.commands.toggleAppExplorer/org.eclipse.ui.commands.toggleState=false
+ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc\tTorg.eclipse.wst.jsdt.ui.presentation\tTorg.eclipse.ui.presentation.default
+ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.jface.textfont
+ENABLED_DECORATORS=org.eclipse.egit.ui.internal.decorators.GitLightweightDecorator\:true,org.eclipse.mylyn.context.ui.decorator.interest\:true,org.eclipse.mylyn.tasks.ui.decorators.task\:true,org.eclipse.mylyn.team.ui.changeset.decorator\:true,org.eclipse.php.ui.problemsDecorator\:true,org.eclipse.php.ui.override.decorator\:true,org.eclipse.php.ui.problemsDecoratorForIModelElement\:true,org.eclipse.php.ui.includepath.problemsDecorator\:true,org.eclipse.team.cvs.ui.decorator\:true,org.eclipse.ui.LinkedResourceDecorator\:true,org.eclipse.ui.SymlinkDecorator\:true,org.eclipse.ui.VirtualResourceDecorator\:true,org.eclipse.ui.ContentTypeDecorator\:true,org.eclipse.ui.ResourceFilterDecorator\:false,org.eclipse.wst.jsdt.ui.override.decorator\:true,
+PLUGINS_NOT_ACTIVATED_ON_STARTUP=
+eclipse.preferences.version=1
+editors=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<editors>\r\n<descriptor id\="org.eclipse.ui.browser.editorSupport" image\="$nl$/icons/obj16/internal_browser.gif" internal\="false" label\="Web Browser" launcher\="org.eclipse.ui.internal.browser.BrowserLauncher" openMode\="4" open_in_place\="false" plugin\="org.eclipse.ui.browser"/>\r\n<descriptor class\="org.eclipse.wst.jsdt.internal.ui.javaeditor.CompilationUnitEditor" id\="org.eclipse.wst.jsdt.ui.CompilationUnitEditor" image\="$nl$/icons/full/obj16/jcu_obj.gif" internal\="true" label\="JavaScript Editor" openMode\="1" open_in_place\="false" plugin\="org.eclipse.wst.jsdt.ui"/>\r\n</editors>
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_NOFOCUS_TAB_BG_END=41,41,41
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_NOFOCUS_TAB_BG_START=43,44,45
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_BG_END=41,41,41
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_BG_START=43,44,45
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_INNER_KEYLINE_COLOR=75,76,79
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_OUTER_KEYLINE_COLOR=75,76,79
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_OUTLINE_COLOR=72,72,72
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_SELECTED_TEXT_COLOR=247,248,248
+org.eclipse.e4.ui.css.theme.e4_dark.org.eclipse.ui.workbench.ACTIVE_TAB_UNSELECTED_TEXT_COLOR=221,221,221
+org.eclipse.egit.ui.DiffAddBackgroundColor=11,121,90
+org.eclipse.egit.ui.DiffAddForegroundColor=216,254,245
+org.eclipse.egit.ui.DiffHeadlineBackgroundColor=71,71,71
+org.eclipse.egit.ui.DiffHeadlineForegroundColor=242,242,242
+org.eclipse.egit.ui.DiffHunkBackgroundColor=53,97,113
+org.eclipse.egit.ui.DiffHunkForegroundColor=233,242,254
+org.eclipse.egit.ui.DiffRemoveBackgroundColor=117,2,36
+org.eclipse.egit.ui.DiffRemoveForegroundColor=255,232,237
+org.eclipse.egit.ui.IgnoredResourceBackgroundColor=42,42,42
+org.eclipse.egit.ui.IgnoredResourceForegroundColor=120,120,120
+org.eclipse.egit.ui.UncommittedChangeBackgroundColor=42,42,42
+org.eclipse.egit.ui.UncommittedChangeForegroundColor=114,157,186
+org.eclipse.jface.textfont=1|Courier New|12.0|0|WINDOWS|1|-16|0|0|0|400|0|0|0|0|3|2|1|49|Courier New;
+org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<org.eclipse.ui.commands>\r\n<keyBinding commandId\="org.eclipse.ui.browser.openBrowser" contextId\="org.eclipse.dltk.ui.context.views" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="ALT+CTRL+B"/>\r\n</org.eclipse.ui.commands>
+org.eclipse.ui.workbench.ACTIVE_TAB_BG_END=37,37,37
+org.eclipse.ui.workbench.ACTIVE_TAB_BG_START=0,128,128
+org.eclipse.ui.workbench.ACTIVE_TAB_TEXT_COLOR=255,128,0
+org.eclipse.ui.workbench.INACTIVE_TAB_BG_END=41,41,41
+org.eclipse.ui.workbench.INACTIVE_TAB_BG_START=0,128,64
+overriddenByCSS=,org.eclipse.egit.ui.DiffAddBackgroundColor,org.eclipse.egit.ui.DiffAddForegroundColor,org.eclipse.egit.ui.DiffHeadlineBackgroundColor,org.eclipse.egit.ui.DiffHeadlineForegroundColor,org.eclipse.egit.ui.DiffHunkBackgroundColor,org.eclipse.egit.ui.DiffHunkForegroundColor,org.eclipse.egit.ui.DiffRemoveBackgroundColor,org.eclipse.egit.ui.DiffRemoveForegroundColor,org.eclipse.egit.ui.IgnoredResourceBackgroundColor,org.eclipse.egit.ui.IgnoredResourceForegroundColor,org.eclipse.egit.ui.UncommittedChangeBackgroundColor,org.eclipse.egit.ui.UncommittedChangeForegroundColor,
+resourcetypes=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<editors version\="3.1">\r\n<info extension\="opts" name\="*"/>\r\n<info extension\="cpt" name\="*"/>\r\n<info extension\="grammar" name\="*"/>\r\n<info extension\="yaml" name\="*"/>\r\n<info extension\="html" name\="*">\r\n<editor id\="org.eclipse.ui.browser.editorSupport"/>\r\n</info>\r\n<info extension\="idl" name\="*"/>\r\n<info extension\="shtml" name\="*">\r\n<editor id\="org.eclipse.ui.browser.editorSupport"/>\r\n</info>\r\n<info extension\="dtml" name\="*"/>\r\n<info extension\="rjs" name\="*"/>\r\n<info extension\="ru" name\="*"/>\r\n<info extension\="chromium" name\="*"/>\r\n<info extension\="patch" name\="*"/>\r\n<info extension\="coffee" name\="*"/>\r\n<info extension\="sass" name\="*"/>\r\n<info extension\="scss" name\="*"/>\r\n<info extension\="js" name\="*">\r\n<editor id\="org.eclipse.wst.jsdt.ui.CompilationUnitEditor"/>\r\n<defaultEditor id\="org.eclipse.wst.jsdt.ui.CompilationUnitEditor"/>\r\n</info>\r\n<info extension\="builder" name\="*"/>\r\n<info extension\="cgi" name\="*"/>\r\n<info extension\="gemspec" name\="*"/>\r\n<info extension\="diff" name\="*"/>\r\n<info extension\="pyw" name\="*"/>\r\n<info extension\="pyx" name\="*"/>\r\n<info extension\="mdown" name\="*"/>\r\n<info extension\="less" name\="*"/>\r\n<info extension\="bvr" name\="*"/>\r\n<info extension\="ctp" name\="*"/>\r\n<info extension\="fcgi" name\="*"/>\r\n<info extension\="rxml" name\="*"/>\r\n<info extension\="svg" name\="*"/>\r\n<info extension\="irbrc" name\="*"/>\r\n<info extension\="md" name\="*"/>\r\n<info extension\="phtml" name\="*"/>\r\n<info extension\="json" name\="*"/>\r\n<info extension\="tld" name\="*"/>\r\n<info extension\="xhtml" name\="*"/>\r\n<info extension\="php" name\="*"/>\r\n<info extension\="css" name\="*"/>\r\n<info extension\="pt" name\="*"/>\r\n<info extension\="py" name\="*"/>\r\n<info extension\="beaver" name\="*"/>\r\n<info extension\="rbx" name\="*"/>\r\n<info extension\="opml" name\="*"/>\r\n<info extension\="rake" name\="*"/>\r\n<info extension\="rhtml" name\="*"/>\r\n<info extension\="log" name\="*"/>\r\n<info extension\="rb" name\="*"/>\r\n<info extension\="rss" name\="*"/>\r\n<info extension\="jsx" name\="*"/>\r\n<info extension\="yml" name\="*"/>\r\n<info extension\="htc" name\="*"/>\r\n<info extension\="dtd" name\="*"/>\r\n<info extension\="erb" name\="*"/>\r\n<info extension\="haml" name\="*"/>\r\n<info extension\="htm" name\="*">\r\n<editor id\="org.eclipse.ui.browser.editorSupport"/>\r\n</info>\r\n<info extension\="inc" name\="*"/>\r\n</editors>

@@ -1,0 +1,161 @@
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/angular.js"></script>
+		<script src="js/angular-locale_pt-br.js"></script>
+		<script src="js/angular-route.js"></script>
+		<script src="js/angular-animate.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/slider.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/factories.js"></script>
+		<script src="js/flow.js/dist/flow.js"></script>
+		<script src="js/fusty-flow.js/src/fusty-flow.js"></script>
+		<script src="js/fusty-flow.js/src/fusty-flow-factory.js"></script>
+		<script src="js/ng-flow-standalone.js"></script>
+		<script src="js/ng-confirm.js"></script>
+		<script src="js/ui-bootstrap-0.12.1.min.js"></script>
+		<script src="js/easy-social-share.js"></script>
+		<link href="css/custom.css" rel="stylesheet" />
+		<link href="css/font-awesome.css" rel="stylesheet" />
+		<title>Aguinaldo Abrantes | Corretor de Imóveis</title>
+		<script src="https://apis.google.com/js/platform.js" async defer>
+			{ lang:'pt-BR'
+			}
+		</script>
+	</head>
+	<body>
+		<div ng-controller="HeaderCtrl">
+			<nav ng-show="isLogged()" class="navbar navbar-black">
+				<div class="container" >
+					<ul class="nav navbar-nav pull-left" >
+						<form class="navbar-form navbar-left" role="search" ng-submit="accessPage()">
+							<div class="form-group">
+								<label for="code">Acesso Rápido:</label>
+								<input type="text" ng-model="quickAccess.code" class="form-control" placeholder="Código do Imóvel">
+							</div>
+							<button type="submit" class="btn btn-default">
+								Acessar
+							</button>
+						</form>
+					</ul>
+				</div>
+			</nav>
+			<header class="header" ng-controller="HeaderCtrl">
+				<div class="container">
+					<div class="row badges">
+						<ul class="list-inline pull-left">
+							<li class="address">
+								<span class="glyphicon glyphicon-share"></span> Siga-nos:
+							</li>
+							<li class="dropdown">
+								<a href="//plus.google.com/u/0/117155068747008052103?prsrc=3"
+								rel="publisher" class="dropdown-toggle" target="_blank" style="text-decoration:none;"> <img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:32px;height:32px;"/> </a>
+								<ul class="dropdown-menu" role="menu">
+									<li>
+										<div class="g-page" data-href="//plus.google.com/u/0/117155068747008052103" data-rel="publisher"></div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="logo">
+							<img src="css/images/logo.png" class="img-responsive">
+						</div>
+						<ul class="list-inline pull-right">
+							<li class="address">
+								<span class="glyphicon glyphicon-home"></span> SEG à SÁB 8H às 11H - 14H às 18H
+							</li>
+							<li class="tel">
+								<span class="glyphicon glyphicon-phone"></span>
+								<span class="phone">(83) 3055-7419</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</header>
+			<nav class="navbar-inverted	">
+				<div class="container" >
+					<ul class="nav navbar-nav pull-left" >
+						<li >
+							<a href="#/home">Página Inicial</a>
+						</li>
+						<li>
+							<a href="#/contact">Contato</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav pull-right" >
+						<li>
+							<a href="#/rs/all/sell">À Venda</a>
+						</li>
+						<li>
+							<a href="#/rs/all/rent">Alugar</a>
+						</li>
+						<li ng-hide="isLogged()">
+							<a href="#/login">Login</a>
+						</li>
+						<li class="dropdown" dropdown is-open="status.isopen" ng-show="isLogged()">
+							<a href class="dropdown-toggle" dropdown-toggle>Menu <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="#/rs/new">Novo Imóvel</a>
+								</li>
+								<li>
+									<a href="#/slides">Slides</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="" ng-click="logout()">Logout</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<div ng-view></div>
+
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<ul class="list-inline pull-left">
+						<li class="tel">
+							<span class="glyphicon glyphicon-phone"></span>
+							<span class="phone">(83) 3055-7419</span>
+						</li>
+						<li class="address">
+							<address>
+								<strong>Aguinaldo Abrantes, Escritório Imobiliário.</strong>
+								<br>
+								Av. Floriano Peixoto, 1800, Sala 104, 1º Andar
+								<br>
+								Hr. de Atendimento:
+								<br>
+								<span class="glyphicon glyphicon-home"></span> SEG à SÁB 8H às 11H - 14H às 18H
+								<br>
+								<abbr title="Celular">Cel:</abbr> (83) 8813-4428
+							</address>
+						</li>
+					</ul>
+					<div class="pull-right">
+						<a href="#/about">A Empresa</a> | <a href="#/contact">Fale Conosco</a> | <a href="#/contact">Venda ou Alugue seu Imóvel</a> | <a href="#/">Notícias</a> |
+					</div>
+				</div>
+				<div class="bottom row">
+					<div class="copyright">
+						Copyright © 2015 <a href="http://www.andreabrantes.com" target="_blank">Aguinaldo Abrantes</a>. Todos os direitos reservados.
+						<br>
+						Corretor de Imóveis | CRECI: 4519-F
+					</div>
+					<div class="developed-by">
+						Desenvolvido por <a href="http://www.andreabrantes.com" target="_blank">André Abrantes</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
