@@ -1,6 +1,8 @@
 node_modules
 public
 .tmp
+.metadata
+.config
 .idea
 client/bower_components
 dist
