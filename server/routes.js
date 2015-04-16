@@ -10,6 +10,7 @@ var hal = require('express-hal')
 module.exports = function(app) {
 
   // Insert routes below
+  app.use('/api/realtys', require('./api/realty'));
   app.use('/api/clients', require('./api/client'));
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));

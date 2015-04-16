@@ -1,7 +1,7 @@
 node_modules
 public
 .tmp
-.metadata
+.metadata/
 .config
 .idea
 client/bower_components
