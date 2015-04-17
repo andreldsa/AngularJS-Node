@@ -7,7 +7,7 @@ var User = require('../user/user.model')
 
 // Get list of clients
 exports.index = function(req, res) {
-  var query =  Client.find({'owner.id': req.headers.id})
+  var query =  Client.find({'owner': req.user})
   if(auth.isAdmin(req.user)) {
 	  query = Client.find()
   }
@@ -22,16 +22,7 @@ exports.show = function(req, res) {
   Client.findById(req.params.id, function (err, client) {
     if(err) { return handleError(res, err); }
     if(!client) { return res.send(404); }
-    if(auth.isAdmin(req.user)) {
-    	User.findById(client.owner.id, function(err, user) {
-        	if(err) { return handleError(res, err); }
-        	console.log(user)
-        	client.owner.name = user.name
-        	return res.json(client);
-        })
-    } else {
-    	return res.json(client)
-    }
+    return res.json(client)
   });
 };
 
@@ -39,6 +30,12 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Client.create(req.body, function(err, client) {
     if(err) { return handleError(res, err); }
+    console.log(req.user)
+    client.owner = req.user
+    client.save(function(err, client) {
+    	 if (err) return handleError(err);
+    	  console.log(client);
+    })
     return res.json(201, client);
   });
 };

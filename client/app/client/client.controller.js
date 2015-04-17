@@ -3,7 +3,7 @@
 angular.module('finalnodeApp')
   .controller('ClientCtrl', function ($scope, $http, $location, Auth) {
     $scope.clients = [];
-    $http({url: '/api/clients', method: 'GET',headers: {'id': Auth.getCurrentUser()._id}}).success(function(clients) {
+    $http.get('/api/clients').success(function(clients) {
       $scope.clients = clients;
     });
     

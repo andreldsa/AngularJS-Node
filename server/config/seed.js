@@ -8,6 +8,9 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Client = require('../api/client/client.model');
+var Realty = require('../api/realty/realty.model');
+var Post = require('../api/post/post.model');
+var Sale = require('../api/sale/sale.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -49,6 +52,10 @@ User.find({}).remove(function() {
   );
 });
 
-Client.find({}).remove(function() {
-	
-})
+Client.find({}).remove(function() {})
+
+Realty.find({}).remove(function() {})
+
+Post.find({}).remove(function() {})
+
+Sale.find({}).remove(function() {})

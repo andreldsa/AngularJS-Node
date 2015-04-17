@@ -7,7 +7,7 @@ var ClientSchema = new Schema({
   name: String,
   info: String,
   email: { type: String, lowercase: true },
-  owner: { id: String, name: String },
+  owner: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   active: Boolean
 });
 

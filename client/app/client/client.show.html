@@ -3,8 +3,12 @@
   <ul class="list-group">
     <li class="list-group-item">
         <strong>{{client.name}}</strong><br>
-        <span class="text-muted">{{client.email}}</span><br>
-        <span ng-show="isAdmin()" class="text-muted"><strong>Owner: </strong>{{client.owner.name}}, {{client.owner.id}} </span>
+        <strong>e-mail: </strong><span class="text-muted">{{client.email}}</span>
+        <span ng-show="isAdmin()" ><br><strong>Owner: </strong>
+        	<span ng-repeat="owner in client.owner">
+        		<a href="/user/{{owner}}">{{owner}}</a>
+        	</span>
+        </span>
         <a ng-click="delete(client)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
     </li>
   </ul>

@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('finalnodeApp')
-  .controller('AdminCtrl', function ($scope, $http, Auth, User) {
+  .controller('AdminCtrl', function ($scope, $http, $location, Auth, User) {
+	if(!Auth.isAdmin()) {
+		$location.path('/')
+	}
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
