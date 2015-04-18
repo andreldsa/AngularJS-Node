@@ -1,14 +1,19 @@
 'use strict';
 
 var _ = require('lodash');
+var Utils = require('../../components/utils')
 var Post = require('./post.model');
 
 // Get list of posts
 exports.index = function(req, res) {
-  Post.find(function (err, posts) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, posts);
-  });
+	var query = Post.find()
+	Utils.applyFilters(query, Post.filters(), req.query)
+	query.exec(function(err, posts) {
+		if (err) {
+			return handleError(res, err);
+		}
+		return res.json(200, posts);
+	});
 };
 
 // Get a single post
