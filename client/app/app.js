@@ -68,6 +68,8 @@ angular.module('finalnodeApp', [
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
+        } else if(loggedIn && next.onlyAdmin && !Auth.isAdmin()) {
+        	$location.path('/404')
         }
       });
     });

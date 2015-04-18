@@ -6,13 +6,6 @@ angular.module('finalnodeApp')
       .when('/user/:id', {
         templateUrl: 'app/user/user.html',
         controller: 'UserCtrl',
-        resolve: {
-        	permission: function($location, Auth) {
-                if(!Auth.isAdmin()){
-                    $location.path('/404/');                    
-                }
-             }
-        }
-        	
+        onlyAdmin: true
       });
   });
