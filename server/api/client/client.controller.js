@@ -5,6 +5,14 @@ var Client = require('./client.model');
 var auth = require('../../auth/auth.service');
 var User = require('../user/user.model')
 
+function findById(req) {
+	var query =  Client.findById(req.params.id).where('owner').equals(req.user)
+	  if(auth.isAdmin(req.user)) {
+		  query = Client.findById(req.params.id)
+	  }
+	return query
+}
+
 // Get list of clients
 exports.index = function(req, res) {
   var query =  Client.find({'owner': req.user})
@@ -19,7 +27,7 @@ exports.index = function(req, res) {
 
 // Get a single client
 exports.show = function(req, res) {
-  Client.findById(req.params.id, function (err, client) {
+  findById(req).exec(function (err, client) {
     if(err) { return handleError(res, err); }
     if(!client) { return res.send(404); }
     return res.json(client)
@@ -43,7 +51,7 @@ exports.create = function(req, res) {
 // Updates an existing client in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Client.findById(req.params.id, function (err, client) {
+  findById(req).exec(function (err, client) {
     if (err) { return handleError(res, err); }
     if(!client) { return res.send(404); }
     var updated = _.merge(client, req.body);
@@ -56,7 +64,7 @@ exports.update = function(req, res) {
 
 // Deletes a client from the DB.
 exports.destroy = function(req, res) {
-  Client.findById(req.params.id, function (err, client) {
+  findById(req).exec(function (err, client) {
     if(err) { return handleError(res, err); }
     if(!client) { return res.send(404); }
     client.remove(function(err) {

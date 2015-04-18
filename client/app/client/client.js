@@ -14,5 +14,9 @@ angular.module('finalnodeApp')
 		templateUrl : 'app/client/client.show.html',
 		controller : 'ClientShowCtrl',
 		authenticate: true
+	}).when('/client/edit/:id', {
+		templateUrl : 'app/client/client.update.html',
+		controller : 'ClientUpdateCtrl',
+		authenticate: true
 	});
 });

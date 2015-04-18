@@ -30,9 +30,10 @@ angular.module('finalnodeApp')
     };
     
     $scope.show = function(client) {
-        $http.get('/api/clients/' + client._id).success(function(client) {
-            $scope.client = client;
-            $location.path('/client/'+client._id)
-        });
+           $location.path('/client/'+client._id)
       };
+     
+      $scope.edit = function(client) {
+          $location.path('/client/edit/'+client._id)
+     };
   });
