@@ -5,6 +5,10 @@ var Client = require('./client.model');
 var auth = require('../../auth/auth.service');
 var User = require('../user/user.model')
 
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
+
 function findById(req) {
 	var query =  Client.findById(req.params.id).where('owner').equals(req.user)
 	  if(auth.isAdmin(req.user)) {
@@ -37,12 +41,12 @@ exports.show = function(req, res) {
 // Creates a new client in the DB.
 exports.create = function(req, res) {
   Client.create(req.body, function(err, client) {
-    if(err) { return handleError(res, err); }
-    console.log(req.user)
+    if(err) {  
+    	console.log(err)
+    	return validationError(res, err); }
     client.owner = req.user
     client.save(function(err, client) {
-    	 if (err) return handleError(err);
-    	  console.log(client);
+    	 if (err) return validationError(err);
     })
     return res.json(201, client);
   });
@@ -56,7 +60,7 @@ exports.update = function(req, res) {
     if(!client) { return res.send(404); }
     var updated = _.merge(client, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) { return validationError(res, err); }
       return res.json(200, client);
     });
   });
