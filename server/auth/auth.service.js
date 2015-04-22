@@ -8,6 +8,7 @@ var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
 var validateJwt = expressJwt({ secret: config.secrets.session });
+var crypto = require('crypto');
 
 /**
  * Attaches the user object to the request if authenticated
@@ -23,11 +24,6 @@ function isAuthenticated() {
       }
       validateJwt(req, res, next);
     })
-    // Check api key
-    .use(function(req, res, next) {
-    	//TODO api key check
-    	next()
-    })
     // Attach user to request
     .use(function(req, res, next) {
       User.findById(req.user._id, function (err, user) {
@@ -39,6 +35,32 @@ function isAuthenticated() {
       });
     });
 }
+
+/**
+ * Check if app settings exist
+ * Otherwise returns 403
+ */
+function isPermited() {
+	  return compose()
+	    // Check api key
+	    .use(function(req, res, next) {
+	    	var current_date = (new Date()).valueOf().toString();
+	    	var random = Math.random().toString();
+	    	var newkey = crypto.createHash('sha1').update(current_date + random).digest('hex');
+	    	
+	    	if(req.headers['x-application-id'] == 'dKMPyFpeKZt5GVAktu2e7GPJA9GGbRH0TTsrgOB7') {
+	    		if(req.headers['x-api-key'] == 'lbXbRK8mxqPUcsCoVtinNShyJFWk40hHvTnEt1zb') {
+	    			console.log("everithing ok")
+	    			console.log(newkey)
+	    			next()
+	    		} else {
+	    			res.json(403, { message: 'Something went wrong, API KEY does not exist.'})
+	    		}
+	    	} else {
+	    		res.json(403, { message: 'Something went wrong, Application ID does not exist.'})
+	    	}
+	    });
+	}
 
 /**
  * Checks if the user role meets the minimum requirements of the route
@@ -80,6 +102,7 @@ function isAdmin(user) {
 }
 
 exports.isAuthenticated = isAuthenticated;
+exports.isPermited = isPermited;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
