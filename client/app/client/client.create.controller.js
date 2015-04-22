@@ -2,17 +2,8 @@
 
 angular.module('finalnodeApp')
   .controller('ClientCreateCtrl', function ($scope, $http, $location, Auth) {
-    $scope.clients = [];
     $scope.client = {}
     $scope.errors = {};
-    $http.get('/api/clients').success(function(clients) {
-      $scope.clients = clients;
-    });
-    
-    $scope.noClients = function() {
-    	return $scope.clients.length === 0
-    }
-    
     $scope.add = function(form) {
     	$scope.submitted = true;
       if($scope.client === '') {
@@ -33,20 +24,4 @@ angular.module('finalnodeApp')
           });
       });
     };
-
-    $scope.delete = function(client) {
-      $http.delete('/api/clients/' + client._id);
-      $scope.clients = []
-      $http.get('/api/clients').success(function(clients) {
-          $scope.clients = clients;
-        });
-    };
-    
-    $scope.show = function(client) {
-           $location.path('/client/'+client._id)
-      };
-     
-      $scope.edit = function(client) {
-          $location.path('/client/edit/'+client._id)
-     };
   });
