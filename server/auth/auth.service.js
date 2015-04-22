@@ -23,6 +23,11 @@ function isAuthenticated() {
       }
       validateJwt(req, res, next);
     })
+    // Check api key
+    .use(function(req, res, next) {
+    	//TODO api key check
+    	next()
+    })
     // Attach user to request
     .use(function(req, res, next) {
       User.findById(req.user._id, function (err, user) {
