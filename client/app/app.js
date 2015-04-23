@@ -22,6 +22,7 @@ angular.module('finalnodeApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
     $httpProvider.interceptors.push('httpRequestInterceptor');
+    $httpProvider.interceptors.push('apiKeyInterceptor');
   })
   .factory('httpRequestInterceptor', function ($q, $location) {
     return {
@@ -60,6 +61,16 @@ angular.module('finalnodeApp', [
         }
       }
     };
+  })
+  // Define APP ID and API KEY as MASTER APPLICATION
+  .factory('apiKeyInterceptor', function ($rootScope, $q, $cookieStore) {
+	  return {
+	    	request: function (config) {
+	    		config.headers['X-Application-Id'] = '5538a255bcec4a702a24bb59';
+	    		config.headers['X-API-Key'] = '003d8ed40432044e7394131e09f8ad9fc57cd55d';
+	    		return config;
+	    	}
+	    }
   })
 
   .run(function ($rootScope, $location, Auth) {
