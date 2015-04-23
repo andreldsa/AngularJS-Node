@@ -42,7 +42,6 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Client.create(req.body, function(err, client) {
     if(err) {  
-    	console.log(err)
     	return validationError(res, err); }
     client.owner = req.user
     client.save(function(err, client) {

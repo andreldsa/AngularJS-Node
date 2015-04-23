@@ -11,6 +11,7 @@ var Client = require('../api/client/client.model');
 var Realty = require('../api/realty/realty.model');
 var Post = require('../api/post/post.model');
 var Sale = require('../api/sale/sale.model');
+var App = require('../api/app/app.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -34,23 +35,41 @@ Thing.find({}).remove(function() {
   });
 });
 
+App.find({}).remove(function() {})
+
 User.find({}).remove(function() {
   User.create({
     provider: 'local',
     name: 'Test User',
     email: 'test@test.com',
     password: 'secret'
-  }, {
-    provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'secret'
   }, function() {
       console.log('finished populating users');
     }
   );
 });
+
+User.create({
+	_id : '55389e8dc4eb7fc02b2e3f11',
+	provider : 'local',
+	role : 'admin',
+	name : 'Admin',
+	email : 'admin@admin.com',
+	password : 'secret'
+}, function(err, user) {
+	App.create({
+		"_id" : "5538a255bcec4a702a24bb59",
+		"apikey" : "003d8ed40432044e7394131e09f8ad9fc57cd55d",
+		"name" : "Master Application",
+		"__v" : 0,
+		"user" : [ user._id ]
+	}, function(err, app) {
+		user.apps.push(app)
+		user.save(function() {
+			console.log('finished master user and apps');
+		})
+	})
+})
 
 Client.find({}).remove(function() {})
 

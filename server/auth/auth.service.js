@@ -8,7 +8,7 @@ var expressJwt = require('express-jwt');
 var compose = require('composable-middleware');
 var User = require('../api/user/user.model');
 var validateJwt = expressJwt({ secret: config.secrets.session });
-var crypto = require('crypto');
+var App = require('../api/app/app.model');
 
 /**
  * Attaches the user object to the request if authenticated
@@ -16,6 +16,7 @@ var crypto = require('crypto');
  */
 function isAuthenticated() {
   return compose()
+    .use(isPermited())
     // Validate jwt
     .use(function(req, res, next) {
       // allow access_token to be passed through query parameter as well
@@ -44,21 +45,17 @@ function isPermited() {
 	  return compose()
 	    // Check api key
 	    .use(function(req, res, next) {
-	    	var current_date = (new Date()).valueOf().toString();
-	    	var random = Math.random().toString();
-	    	var newkey = crypto.createHash('sha1').update(current_date + random).digest('hex');
-	    	
-	    	if(req.headers['x-application-id'] == 'dKMPyFpeKZt5GVAktu2e7GPJA9GGbRH0TTsrgOB7') {
-	    		if(req.headers['x-api-key'] == 'lbXbRK8mxqPUcsCoVtinNShyJFWk40hHvTnEt1zb') {
-	    			console.log("everithing ok")
-	    			console.log(newkey)
-	    			next()
+	    	App.findById(req.headers['x-application-id'])
+	    	.where('apikey').equals(req.headers['x-api-key'])
+	    	.exec(function(err, app) {
+	    		if (err) {
+	    			next(res.json(500, err));
+	    		} else if (!app) {
+	    			next(res.json(403, { message: 'Something went wrong, APP ID or API KEY does not exist.'}))
 	    		} else {
-	    			res.json(403, { message: 'Something went wrong, API KEY does not exist.'})
+	    			next()
 	    		}
-	    	} else {
-	    		res.json(403, { message: 'Something went wrong, Application ID does not exist.'})
-	    	}
+	    	})
 	    });
 	}
 
