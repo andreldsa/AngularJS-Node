@@ -24,7 +24,7 @@
 					<td>{{property.region}}</td>
 					<td>{{property.city}}</td>
 					<td>{{property.holder}}</td>
-					<td ng-show="isAdmin()">{{property.owner}}</td>
+					<td ng-show="isAdmin()"><a href="/user/{{property.owner[0]}}">{{property.owner[0]}}</a></td>
 					<td>
 						<a class="btn btn-primary" href="/property/{{property._id}}" >Show</a>
 					</td>
