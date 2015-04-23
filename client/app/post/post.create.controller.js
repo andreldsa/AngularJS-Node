@@ -1,16 +1,20 @@
 'use strict';
 
 angular.module('finalnodeApp')
-  .controller('ClientCreateCtrl', function ($scope, $http, $location, Auth) {
-    $scope.client = {}
+  .controller('PostCreateCtrl', function ($scope, $http, $location, Auth) {
+    $scope.post = {}
     $scope.errors = {};
+    $scope.properties = {}
+    $http.get('/api/realtys').success(function(realtys) {
+    	$scope.properties = realtys;
+    })
     $scope.add = function(form) {
     	$scope.submitted = true;
-      if($scope.client === '') {
+      if($scope.post === '') {
         return;
       }
-      $http.post('/api/clients', $scope.client).then( function() {
-    	  $location.path('/client')
+      $http.post('/api/posts', $scope.post).success( function() {
+    	  $location.path('/post')
       }).catch(function(err) {
     	  err = err.data;
     	  $scope.errors = {};

@@ -71,7 +71,17 @@ User.create({
 
 Client.find({}).remove(function() {})
 
-Realty.find({}).remove(function() {})
+Realty.find({}).remove(function() {
+	Realty.create(  {
+		    type : 'Houser',
+		    region: 'East',
+		    city: 'Dublin',
+		    address: 'Oconnor Street',
+		    holder: 'OBrian',
+		    owner: '55389e8dc4eb7fc02b2e3f11'
+		    
+		  });
+})
 
 var Post = require('../api/post/post.model');
 

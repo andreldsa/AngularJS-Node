@@ -41,7 +41,7 @@ exports.show = function(req, res) {
 // Creates a new post in the DB.
 exports.create = function(req, res) {
   Post.create(req.body, function(err, post) {
-    if(err) { return handleError(res, err); }
+    if(err) { return validationError(res, err); }
     post.owner = req.user;
     post.save(function(err, post) {
     	 if (err) return validationError(err);
