@@ -5,6 +5,10 @@ var App = require('./app.model');
 var User = require('../user/user.model');
 var auth = require('../../auth/auth.service');
 
+var validationError = function(res, err) {
+	  return res.json(422, err);
+	};
+
 function findById(req) {
 	var query =  App.findById(req.params.id).where('user').equals(req.user)
 	  if(auth.isAdmin(req.user)) {
@@ -39,30 +43,16 @@ exports.show = function(req, res) {
 // Creates a new app in the DB.
 exports.create = function(req, res) {
 	var app = new App(req.body)
-	if (!req.user) {
-		// attach admin user
-		User.findOne({
-			name : 'Admin',
-			role : 'admin'
-		}, function(err, user) {
+	return User.findOne(req.user._id, function(err, user) {
 			app.user = user._id
 			app.save(function(err, app) {
 				if (err) {
-					return handleError(res, err);
+					return validationError(res, err);
 				}
 				return res.json(201, app);
 
 			});
 		})
-	} else {
-		app.save(function(err, app) {
-			if (err) {
-				return handleError(res, err);
-			}
-			return res.json(201, app);
-
-		});
-	}
 };
 
 // Updates an existing app in the DB.
@@ -74,7 +64,7 @@ exports.update = function(req, res) {
     if(!app) { return res.send(404); }
     var updated = _.merge(app, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) { return validationError(res, err); }
       return res.json(200, app);
     });
   });

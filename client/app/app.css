@@ -38,8 +38,13 @@
     padding: 0.2em 0;
 }
 
-.form-control:read-only {
+.form-control:read-only { 
+	font-weight: bold;
 	cursor: auto;
 	border: 0;
 	background: none;
+}
+
+.form-control:read-only:focus {
+	box-shadow: 0 0 0;
 }

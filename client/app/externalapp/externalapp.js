@@ -5,6 +5,12 @@ angular.module('finalnodeApp')
     $routeProvider
       .when('/externalapp', {
         templateUrl: 'app/externalapp/externalapp.html',
-        controller: 'ExternalappCtrl'
-      });
+        controller: 'ExternalappCtrl',
+        authenticate: true
+      })
+      .when('/externalapp/new', {
+          templateUrl: 'app/externalapp/externalapp.create.html',
+          controller: 'ExternalappCreateCtrl',
+          authenticate: true
+        });
   });

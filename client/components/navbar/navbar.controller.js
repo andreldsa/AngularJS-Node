@@ -1,17 +1,21 @@
 'use strict';
 
 angular.module('finalnodeApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/',
-      'auth' : false
-    },
-    {
-        'title': 'Clients',
-        'link': '/client',
-        'auth' : true
-      }];
+  .controller('NavbarCtrl',
+		function($scope, $location, Auth) {
+			$scope.menu = [ {
+				'title' : 'Home',
+				'link' : '/',
+				'auth' : false
+			}, {
+				'title' : 'Clients',
+				'link' : '/client',
+				'auth' : true
+			}, {
+				'title' : 'API Keys',
+				'link' : '/externalapp',
+				'auth' : true
+			} ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
