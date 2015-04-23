@@ -45,6 +45,10 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Realty.create(req.body, function(err, realty) {
     if(err) { return validationError(res, err); }
+    realty.owner = req.user;
+    realty.save(function(err, realty) {
+    	 if (err) return validationError(err);
+    })
     return res.json(201, realty);
   });
 };

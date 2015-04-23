@@ -9,11 +9,12 @@ var RealtySchema = new Schema({
   region: { type: String, required: true},
   city: { type: String, required: true},
   address: { type: String, required: true},  
+  holder: { type: String, required: true}, 
   owner: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   active: Boolean
 });
 
-RealtySchema.statics.filters = function(){
+RealtySchema.statics.filters = function(){ 
 	return {
 		type: 'contains',
 		region: 'contains',
