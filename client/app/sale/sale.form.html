@@ -1,6 +1,6 @@
 <div class="form-group"
-	ng-class="{ 'has-success': form.Property.$valid && submitted,
-                                            'has-error': form.Property.$invalid && submitted }">
+	ng-class="{ 'has-success': form.property.$valid && submitted,
+                                            'has-error': form.property.$invalid && submitted }">
 	<label>Property</label> <select class="form-control" name="property" ng-hide="readOnly"
 		class="form-control" ng-model="sale.realty" required>
 		<option value=''>Select Property</option>
@@ -12,7 +12,7 @@
 		<a href="/property/{{sale.realty._id}}">{{sale.realty.type}} in {{sale.realty.city}} - {{sale.realty.holder}}</a>
 	</span>
 
-	<p class="help-block" ng-show="form.state.$error.required && submitted">A
+	<p class="help-block" ng-show="form.property.$error.required && submitted">A
 		property is required</p>
 </div>
 
@@ -41,7 +41,7 @@
 
 	<div class="input-group"  ng-hide="readOnly">
 		<div class="input-group-addon">$</div>
-		<input type="text" class="form-control" id="exampleInputAmount"
+		<input type="text" class="form-control" id="exampleInputAmount" required
 			placeholder="Amount" ng-model="sale.price">
 		<div class="input-group-addon">.00</div>
 	</div>
