@@ -15,23 +15,21 @@ var App = require('../api/app/app.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
-    name : 'Development Tools',
-    info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
+    name : 'CRUD Clients'
   }, {
-    name : 'Server and Client integration',
-    info : 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
+    name : 'CRUD Real Estate'
   }, {
-    name : 'Smart Build System',
-    info : 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'
+    name : 'CRUD Sales'
   },  {
-    name : 'Modular Structure',
-    info : 'Best practice client and server structures allow for more code reusability and maximum scalability'
+    name : 'CRUD Posts'
   },  {
-    name : 'Optimized Build',
-    info : 'Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching.'
+    name : 'CRUD External Aplications'
+  },  {
+    name : 'Authentication Local and Google'
   },{
-    name : 'Deployment Ready',
-    info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
+    name : 'Resquest Authorization provider'
+  },{
+    name : 'Scopping information Support'
   });
 });
 
@@ -79,30 +77,20 @@ var Post = require('../api/post/post.model');
 
 Post.find({}).remove(function() {
   Post.create(  {
-    title : 'India - Tiger population sees 30% increase.',
-    link:   'http://www.bbc.com/news/world-asia-30896028',
-    username: 'jbloggs',
-    upvotes: 0
+    title : 'Houser in Dublin',
+    description:  'It was popularised in the 1960sith desktop publis f Lorem Ipsum'
   },  {
-    title : 'The button that is not.',
-    link:   'http://blog.nuclearsecrecy.com/2014/12/15/button-isnt/',
-    username: 'psmith',
-    upvotes: 36
+    title : 'House in East Waterford',
+    description:  'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'
   },  {
-    title : 'Google Nears $1B Investment in SpaceX',
-    link:   null,
-    username: 'aoneill',
-    upvotes: 8
+    title : 'Apartment in West Cork',
+    description:   null
   },  {
-    title : 'Facebook $3B Investment in SpaceX',
-    link:   null,
-    username: 'andreldsa',
-    upvotes: 8
+    title : 'Land in county Cork',
+    description:   null
   },  {
-    title : 'Coinbase Raises $75M from DFJ Growth, USAA, and More',
-    link:   'http://blog.coinbase.com/post/108642362357/coinbase-raises-75m-from-dfj-growth-usaa-nyse',
-    username: 'jmarino',
-    upvotes: 80
+    title : 'Office in Galway',
+    description:   'There are many variations of passages of Lorem Ipsum available'
   }, function() {
       console.log('finished populating posts');
   	}

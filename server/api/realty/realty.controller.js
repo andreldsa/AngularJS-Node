@@ -2,18 +2,39 @@
 
 var _ = require('lodash');
 var Realty = require('./realty.model');
+var Utils = require('../../components/utils')
+var auth = require('../../auth/auth.service');
+
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
+
+function findById(req) {
+	var query =  Realty.findById(req.params.id).where('owner').equals(req.user)
+	  if(auth.isAdmin(req.user)) {
+		  query = Realty.findById(req.params.id)
+	  }
+	return query
+}
 
 // Get list of realtys
 exports.index = function(req, res) {
-  Realty.find(function (err, realtys) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, realtys);
-  });
+    var query =  Realty.find({'owner': req.user})
+    Utils.applyFilters(query, Realty.filters(), req.query)
+    if(auth.isAdmin(req.user)) {
+	  query = Realty.find()
+    }
+	query.exec(function(err, realtys) {
+		if (err) {
+			return handleError(res, err);
+		}
+		return res.json(200, realtys);
+	});
 };
 
 // Get a single realty
 exports.show = function(req, res) {
-  Realty.findById(req.params.id, function (err, realty) {
+  findById(req).exec(function (err, realty) {
     if(err) { return handleError(res, err); }
     if(!realty) { return res.send(404); }
     return res.json(realty);
@@ -23,7 +44,7 @@ exports.show = function(req, res) {
 // Creates a new realty in the DB.
 exports.create = function(req, res) {
   Realty.create(req.body, function(err, realty) {
-    if(err) { return handleError(res, err); }
+    if(err) { return validationError(res, err); }
     return res.json(201, realty);
   });
 };
@@ -31,12 +52,12 @@ exports.create = function(req, res) {
 // Updates an existing realty in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Realty.findById(req.params.id, function (err, realty) {
+  findById(req).exec(function (err, realty) {
     if (err) { return handleError(res, err); }
     if(!realty) { return res.send(404); }
     var updated = _.merge(realty, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) { return validationError(res, err); }
       return res.json(200, realty);
     });
   });
@@ -44,7 +65,7 @@ exports.update = function(req, res) {
 
 // Deletes a realty from the DB.
 exports.destroy = function(req, res) {
-  Realty.findById(req.params.id, function (err, realty) {
+  findById(req).exec(function (err, realty) {
     if(err) { return handleError(res, err); }
     if(!realty) { return res.send(404); }
     realty.remove(function(err) {

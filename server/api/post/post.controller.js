@@ -3,6 +3,19 @@
 var _ = require('lodash');
 var Utils = require('../../components/utils')
 var Post = require('./post.model');
+var auth = require('../../auth/auth.service');
+
+var validationError = function(res, err) {
+	  return res.json(422, err);
+};
+
+function findById(req) {
+	var query = Post.findById(req.params.id).where('owner').equals(req.user)
+	if (auth.isAdmin(req.user)) {
+		query = Post.findById(req.params.id)
+	}
+	return query
+}
 
 // Get list of posts
 exports.index = function(req, res) {
@@ -36,12 +49,12 @@ exports.create = function(req, res) {
 // Updates an existing post in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Post.findById(req.params.id, function (err, post) {
+  findById(req).exec(function (err, post) {
     if (err) { return handleError(res, err); }
     if(!post) { return res.send(404); }
     var updated = _.merge(post, req.body);
     updated.save(function (err) {
-      if (err) { return handleError(res, err); }
+      if (err) { return validationError(res, err); }
       return res.json(200, post);
     });
   });
@@ -49,7 +62,7 @@ exports.update = function(req, res) {
 
 // Deletes a post from the DB.
 exports.destroy = function(req, res) {
-  Post.findById(req.params.id, function (err, post) {
+	findById(req).exec(function (err, post) {
     if(err) { return handleError(res, err); }
     if(!post) { return res.send(404); }
     post.remove(function(err) {

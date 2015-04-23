@@ -16,4 +16,14 @@ var ClientSchema = new Schema({
   active: Boolean
 });
 
+ClientSchema.statics.filters = function(){
+	return {
+		name: 'contains',
+		address: 'contains',
+		city: 'contains',
+		info: 'contains',
+		email: 'contains'
+	}
+}
+
 module.exports = mongoose.model('Client', ClientSchema);

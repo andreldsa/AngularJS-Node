@@ -2,8 +2,9 @@
 
 var _ = require('lodash');
 var Client = require('./client.model');
-var auth = require('../../auth/auth.service');
 var User = require('../user/user.model')
+var Utils = require('../../components/utils')
+var auth = require('../../auth/auth.service');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -20,6 +21,7 @@ function findById(req) {
 // Get list of clients
 exports.index = function(req, res) {
   var query =  Client.find({'owner': req.user})
+  Utils.applyFilters(query, Client.filters(), req.query)
   if(auth.isAdmin(req.user)) {
 	  query = Client.find()
   }

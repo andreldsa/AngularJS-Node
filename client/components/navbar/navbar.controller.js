@@ -12,6 +12,18 @@ angular.module('finalnodeApp')
 				'link' : '/client',
 				'auth' : true
 			}, {
+				'title' : 'Properties',
+				'link' : '/property',
+				'auth' : true
+			}, {
+				'title' : 'Sales',
+				'link' : '/sale',
+				'auth' : true
+			}, {
+				'title' : 'Posts',
+				'link' : '/post',
+				'auth' : true
+			}, {
 				'title' : 'API Keys',
 				'link' : '/externalapp',
 				'auth' : true
