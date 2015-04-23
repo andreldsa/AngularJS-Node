@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Sale = require('./sale.model');
 var auth = require('../../auth/auth.service');
+var Utils = require('../../components/utils');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -42,6 +43,10 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Sale.create(req.body, function(err, sale) {
     if(err) { return validationError(res, err); }
+    sale.owner = req.user;
+    sale.save(function(err, sale) {
+    	 if (err) return validationError(err);
+    })
     return res.json(201, sale);
   });
 };

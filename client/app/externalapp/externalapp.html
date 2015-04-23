@@ -3,7 +3,7 @@
 	<ul class="list-group">
 		<li class="list-group-item" ng-show="noApps()"><strong>No
 				applications yet</strong><br></li>
-		<li class="list-group-item" ng-repeat="app in apps">
+		<li class="update list-group-item" ng-repeat="app in apps">
 			<form class="form-inline" name="form{{app._id}}" ng-submit="save(app)" novalidate>
 				<div class="form-group"
 					ng-class="{ 'has-success': form{{app._id}}.name.$valid && submitted,

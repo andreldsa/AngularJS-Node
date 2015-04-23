@@ -42,6 +42,10 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Post.create(req.body, function(err, post) {
     if(err) { return handleError(res, err); }
+    post.owner = req.user;
+    post.save(function(err, post) {
+    	 if (err) return validationError(err);
+    })
     return res.json(201, post);
   });
 };
