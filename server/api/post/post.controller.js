@@ -22,10 +22,13 @@ exports.index = function(req, res) {
 	var query = Post.find()
 	Utils.applyFilters(query, Post.filters(), req.query)
 	query.exec(function(err, posts) {
+		var result = {
+				"results": posts
+		}
 		if (err) {
 			return handleError(res, err);
 		}
-		return res.json(200, posts);
+		return res.json(200, result);
 	});
 };
 

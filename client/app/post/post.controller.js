@@ -3,8 +3,8 @@
 angular.module('finalnodeApp')
   .controller('PostCtrl', function ($scope, $http, $location, Auth) {
     $scope.posts = [];
-    $http.get('/api/posts').success(function(posts) {
-      $scope.posts = posts;
+    $http.get('/api/posts').success(function(response) {
+      $scope.posts = response.results;
     });
     
     $scope.noPosts = function() {

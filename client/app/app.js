@@ -63,7 +63,7 @@ angular.module('finalnodeApp', [
     };
   })
   // Define APP ID and API KEY as MASTER APPLICATION
-  .factory('apiKeyInterceptor', function ($rootScope, $q, $cookieStore) {
+  .factory('apiKeyInterceptor', function ($rootScope) {
 	  return {
 	    	request: function (config) {
 	    		config.headers['X-Application-Id'] = '5538a255bcec4a702a24bb59';
