@@ -4,7 +4,8 @@ angular.module('finalnodeApp')
   .controller('PropertyUpdateCtrl', function ($scope, $http, $routeParams, $location, Auth) {
 	$scope.property = {};
 	$scope.errors = {};
-	
+    $scope.vm = {}
+    $scope.vm.uploadme = {}
 	$http.get('/api/realtys/' + $routeParams.id).success(function(property) {
 	    $scope.property = property;
 	});
@@ -18,6 +19,7 @@ angular.module('finalnodeApp')
 	
     $scope.save = function(form) {
     	$scope.submitted = true;
+    	$scope.property.frontImage = $scope.vm.uploadme
     	if(form.$valid) {
             $http.put('/api/realtys/' + $scope.property._id, $scope.property).then( function() {
           	  $location.path('/property/' + $scope.property._id);

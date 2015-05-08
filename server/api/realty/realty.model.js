@@ -10,6 +10,7 @@ var RealtySchema = new Schema({
   city: { type: String, required: true},
   address: { type: String, required: true},  
   holder: { type: String, required: true}, 
+  frontImage: String,
   owner: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   active: Boolean
 });

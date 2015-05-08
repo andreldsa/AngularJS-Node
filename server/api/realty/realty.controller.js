@@ -4,6 +4,7 @@ var _ = require('lodash');
 var Realty = require('./realty.model');
 var Utils = require('../../components/utils')
 var auth = require('../../auth/auth.service');
+var mongoose = require('mongoose');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -37,12 +38,18 @@ exports.show = function(req, res) {
   findById(req).exec(function (err, realty) {
     if(err) { return handleError(res, err); }
     if(!realty) { return res.send(404); }
+    if(realty.frontImage != undefined) {
+    	 realty.frontImage = new Buffer(realty.frontImage, "base64");
+    }
     return res.json(realty);
   });
 };
 
 // Creates a new realty in the DB.
 exports.create = function(req, res) {
+  if(req.body.frontImage != undefined) {
+	  req.body.frontImage = new Buffer(req.body.frontImage).toString('base64');
+  }
   Realty.create(req.body, function(err, realty) {
     if(err) { return validationError(res, err); }
     realty.owner = req.user;
@@ -60,6 +67,9 @@ exports.update = function(req, res) {
     if (err) { return handleError(res, err); }
     if(!realty) { return res.send(404); }
     var updated = _.merge(realty, req.body);
+    if(realty.frontImage != undefined) {
+    	realty.frontImage = new Buffer(realty.frontImage).toString('base64');
+    }
     updated.save(function (err) {
       if (err) { return validationError(res, err); }
       return res.json(200, realty);

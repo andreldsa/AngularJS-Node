@@ -7,7 +7,8 @@
 		</div>
 
 		<div class="col-sm-12">
-			<form class="form" name="form" ng-submit="add(form)" novalidate>
+			<form class="form" name="form" ng-submit="add(form)"
+				enctype="multipart/form-data" novalidate>
 				<div ng-include src="'app/property/property.form.html'"></div>
 				<div>
 					<button class="btn btn-inverse btn-lg btn-login" type="submit">

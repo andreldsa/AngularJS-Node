@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Utils = require('../../components/utils')
 var Post = require('./post.model');
+var Realty = require('../realty/realty.model');
 var auth = require('../../auth/auth.service');
 
 var validationError = function(res, err) {
@@ -43,14 +44,20 @@ exports.show = function(req, res) {
 
 // Creates a new post in the DB.
 exports.create = function(req, res) {
-  Post.create(req.body, function(err, post) {
-    if(err) { return validationError(res, err); }
-    post.owner = req.user;
-    post.save(function(err, post) {
-    	 if (err) return validationError(err);
-    })
-    return res.json(201, post);
-  });
+  Realty.findById(req.body.realty, function(err, realty) {
+	  req.body.realty = realty
+	  if(realty.frontImage != undefined) {
+	    	 realty.frontImage = new Buffer(realty.frontImage, "base64");
+	    }
+	  Post.create(req.body, function(err, post) {
+		  if(err) { return validationError(res, err); }
+		  post.owner = req.user;
+		  post.save(function(err, post) {
+			  if (err) return validationError(err);
+		  })
+		  return res.json(201, post);
+	  });
+  })
 };
 
 // Updates an existing post in the DB.
@@ -59,11 +66,14 @@ exports.update = function(req, res) {
   findById(req).exec(function (err, post) {
     if (err) { return handleError(res, err); }
     if(!post) { return res.send(404); }
-    var updated = _.merge(post, req.body);
-    updated.save(function (err) {
-      if (err) { return validationError(res, err); }
-      return res.json(200, post);
-    });
+    Realty.findById(req.body.realty, function(err, realty) {
+  	  req.body.realty = realty
+  	  var updated = _.merge(post, req.body);
+  	  updated.save(function (err) {
+  		  if (err) { return validationError(res, err); }
+  		  return res.json(200, post);
+  	  });
+    })
   });
 };
 
@@ -78,6 +88,58 @@ exports.destroy = function(req, res) {
     });
   });
 };
+
+exports.createComment = function(req, res) {
+	Post.findById(req.params.id, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
+		if (!post) {
+			return res.send(404);
+		}
+		var body = req.body
+		var comment = {
+				name: body.name,
+				email: body.email,
+				comment: body.comment,
+				createdAt: new Date().toJSON()
+		}
+		post.addComment(comment)
+		post.save(function(err) 
+				{
+			if(err) { return handleError(res, err); }
+			return res.send(204)
+		})
+	});
+}
+
+exports.showComments = function(req, res) {
+	Post.findById(req.params.id, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
+		if (!post) {
+			return res.send(404);
+		}
+		return res.send(post.comments)
+	});
+}
+
+exports.deleteComment = function(req, res) {
+	Post.findById(req.params.id, function (err, post) {
+		if (err) {
+			return handleError(res, err);
+		}
+		if (!post) {
+			return res.send(404);
+		}
+		post.comments.id(req.params.commentId).remove()
+		post.save(function(err) {
+			if(err) { return handleError(res,err);}
+			return res.send(200)
+		})
+	});
+}
 
 function handleError(res, err) {
   return res.send(500, err);

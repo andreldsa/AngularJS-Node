@@ -60,14 +60,16 @@ User.create({
 		"apikey" : "003d8ed40432044e7394131e09f8ad9fc57cd55d",
 		"name" : "Master Application",
 		"__v" : 0,
-		"user" : [ user._id ]
+		"user" : '55389e8dc4eb7fc02b2e3f11'
 	}, function(err, app) {
-		user.apps.push(app)
+		user.apps = [app]
 		user.save(function() {
 			console.log('finished master user and apps');
 		})
 	})
+
 })
+
 
 Client.find({}).remove(function() {})
 

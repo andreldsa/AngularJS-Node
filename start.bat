@@ -1,2 +1,3 @@
-start powershell mongod --dbpath D:\mDBs
+start powershell mongod --dbpath F:\mDBs
+
 grunt serve

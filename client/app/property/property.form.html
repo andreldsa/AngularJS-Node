@@ -44,3 +44,14 @@
 	<p class="help-block" ng-show="form.holder.$error.required && submitted">A
 		holder is required</p>
 </div>
+
+<div class="form-group" 
+	ng-class="{ 'has-success': form.frontImage.$valid && submitted,
+                                            'has-error': form.frontImage.$invalid && submitted }">
+	<label>Front Image</label> 
+		<input type="file" fileread="vm.uploadme" ng-hide="readOnly"/>
+	<p class="help-block" ng-show="form.frontImage.$error.required && submitted">A
+		frontImage is required</p>
+		
+	<img ng-show="readOnly" data-ng-src="{{property.frontImage}}" width="100%">
+</div>
